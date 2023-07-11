@@ -1,0 +1,2 @@
+#!/bin/bash
+echo $(( $(echo $WATER | tr -d '\n' | base64 -d) + $(echo $STIR | tr -d '\n' | base64 -d) ))
