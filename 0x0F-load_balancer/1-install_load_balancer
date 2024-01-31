@@ -13,7 +13,7 @@ server_config=\
 frontend  juu-frontend
         bind *:80
         mode http
-        default_backend leo-backend
+        default_backend juu-backend
 backend juu-backend
         balance roundrobin
         server 481904-web-01 54.162.35.208:80 check
