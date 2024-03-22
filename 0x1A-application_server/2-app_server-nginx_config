@@ -1,25 +1,14 @@
-#configures nginx to serve the route /airbnb-onepage/
-
 server {
-    #listen on port 80
-    listen     80 default_server;
-    listen     [::]:80 default_server;
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        server_name 3.85.177.84;
+        add_header X-Served-By 481904-web-01;
 
-    #use ip of server as domain name
-    server_name 54.162.35.208;
-
-    add_header  X-Served_By 481904-web-01;
-
-
-   location = /airbnb-onepage/ {
-       proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
-   }
-
-   #404 error page
-
-   error_page 404 /404.html;
-   location /404 {
-       root /var/ww/html;
-       internal;
-   }
+        location = /airbnb-onepage/ {
+            proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
+        }
+        location /404 {
+            root /var/www/html;
+            internal;
+        }
 }
