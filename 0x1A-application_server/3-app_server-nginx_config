@@ -1,28 +1,18 @@
-#configures nginx to serve the route /airbnb-onepage/
-
 server {
-    #listen on port 80
-    listen     80 default_server;
-    listen     [::]:80 default_server;
-
-    #use ip of server as domain name
-    server_name 54.162.35.208;
-
-    add_header X-Served_By 481904-web-01;
+        listen 80 default_server;
+        listen [::]:80 default_server;
 
 
-    location = /airbnb-onepage/ {
-        proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
-    }
+        server_name 3.94.211.155;
 
-    location ~ /airbnb-dynamic/number_odd_or_even/(/d+)$ {
-       proxy_pass  http://127.0.0.1:5001/number_odd_or_even/$1;
-
-    #404 error page
-
-    error_page 404 /404.html;
-    location /404 {
-        root /var/ww/html;
-        internal;
-    }
+        location = /airbnb-onepage/ {
+                proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
+        }
+        location ~ /airbnb-dynamic/number_odd_or_even/(\d+)$ {
+                proxy_pass  http://127.0.0.1:5001/number_odd_or_even/$1;
+        }
+        location /404 {
+                root /var/www/html;
+                internal;
+        }
 }
